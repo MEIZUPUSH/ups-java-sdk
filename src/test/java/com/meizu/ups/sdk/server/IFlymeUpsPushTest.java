@@ -1,6 +1,8 @@
 package com.meizu.ups.sdk.server;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.meizu.ups.sdk.constant.ClickType;
 import com.meizu.ups.sdk.server.constant.PushResponseCode;
 import com.meizu.ups.sdk.server.constant.ResultPack;
 import com.meizu.ups.sdk.server.model.push.PushResult;
@@ -8,6 +10,7 @@ import com.meizu.ups.sdk.server.model.push.UnVarnishedMessage;
 import com.meizu.ups.sdk.server.model.push.VarnishedMessage;
 import com.meizu.ups.sdk.server.model.statistics.DailyPushStatics;
 import com.meizu.ups.sdk.utils.DateUtils;
+import com.meizu.ups.sdk.vo.ClickTypeInfo;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -40,16 +43,25 @@ public class IFlymeUpsPushTest {
     public void testVarnishedMessagePush() throws Exception {
         //推送对象
         IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
+        JSONObject param = new JSONObject();
+        param.put("key","v1");
+        param.put("k2","v2");
+        param.put("k3","v3");
 
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
-                .title("Java SDK 推送标题").content("Java SDK 推送内容")
+                .title("Java SDK 推送标题").content("消息内容")
+                .clickType(ClickType.ACTIVITY.getDesc())
+                .activity("com.meizu.upspushdemo.TestActivity")
+                .parameters(param)
+//                .url("https://www.baidu.com/")
+//                .customAttribute("客户端自定义参数")
                 .build();
 
         //目标用户
         List<String> pushIds = new ArrayList<String>();
-        pushIds.add("pushId_1");
-        pushIds.add("pushId_2");
+        pushIds.add("2_PLhHeEuuYSFHkmhaLdX6VdkpfmhFH9fH5hYD2IEcnwA=");
+        pushIds.add("3_0869154022499037300001002200CN01");
 
         // 1 调用推送服务
         ResultPack<PushResult> result = push.pushMessage(message, pushIds);
@@ -103,8 +115,7 @@ public class IFlymeUpsPushTest {
 
         //目标用户
         List<String> pushIds = new ArrayList<String>();
-        pushIds.add("pushId_1");
-        pushIds.add("pushId_2");
+        pushIds.add("2_PLhHeEuuYSFHkmhaLdX6VdkpfmhFH9fH5hYD2IEcnwA=");
 
         ResultPack<PushResult> result = push.pushMessage(message, pushIds);
         // 2 处理推送结果

@@ -14,8 +14,7 @@ public class PushResult {
     private String msgId;//推送消息ID，用于推送流程明细排查
     private Map<String, List<String>> respTarget;//推送目标结果状态
 
-    public static PushResult build(String msgId, Map<String, List<String>> respTarget) {
-        return new PushResult(msgId, respTarget);
+    public PushResult() {
     }
 
     private PushResult(String msgId, Map<String, List<String>> respTarget) {
@@ -29,6 +28,14 @@ public class PushResult {
 
     public Map<String, List<String>> getRespTarget() {
         return respTarget;
+    }
+
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
+    }
+
+    public void setRespTarget(Map<String, List<String>> respTarget) {
+        this.respTarget = respTarget;
     }
 
     @Override

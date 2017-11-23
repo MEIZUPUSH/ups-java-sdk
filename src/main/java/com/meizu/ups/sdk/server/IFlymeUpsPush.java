@@ -28,9 +28,7 @@ import com.meizu.ups.sdk.vo.VarnishedMessageJson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 /**
@@ -301,13 +299,12 @@ public class IFlymeUpsPush extends HttpClient {
         String code = httpResult.getCode();
         String msg = httpResult.getMessage();
         String value = httpResult.getValue();
-        String msgId = httpResult.getMsgId();
         if (SUCCESS_CODE.equals(code)) {
-            Map<String, List<String>> respTarget = new HashMap<String, List<String>>();
+            PushResult respTarget = new PushResult();
             if (StringUtils.isNotBlank(value)) {
-                respTarget = JSONObject.parseObject(value, Map.class);
+                respTarget = JSONObject.parseObject(value, PushResult.class);
             }
-            return ResultPack.succeed(code, msg, PushResult.build(msgId, respTarget));
+            return ResultPack.succeed(code, msg, respTarget);
         } else {
             return ResultPack.failed(code, msg);
         }
