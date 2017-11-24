@@ -51,16 +51,18 @@ public class IFlymeUpsPushTest {
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
-                .clickType(ClickType.ACTIVITY.getDesc())
-                .activity("com.meizu.upspushdemo.TestActivity")
-                .parameters(param)
+                .clickType(ClickType.CUSTOM_URI.getDesc())
+//                .activity("com.meizu.upspushdemo.TestActivity")
+                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
+//                .parameters(param)
 //                .url("https://www.baidu.com/")
 //                .customAttribute("客户端自定义参数")
                 .build();
 
         //目标用户
         List<String> pushIds = new ArrayList<String>();
-        pushIds.add("2_PLhHeEuuYSFHkmhaLdX6VdkpfmhFH9fH5hYD2IEcnwA=");
+        pushIds.add("1_S5Q4b72627d456c797d5e445d030507545c4275617446");
+        pushIds.add("2_fW3FqiMlR0uBqMeUO97SC11ggZxnGaFeiBoQ7pugWu0=");
         pushIds.add("3_0869154022499037300001002200CN01");
 
         // 1 调用推送服务

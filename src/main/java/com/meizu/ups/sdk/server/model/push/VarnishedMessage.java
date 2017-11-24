@@ -51,7 +51,7 @@ public class VarnishedMessage extends Message {
 
     /* =============点击动作 begin=============  */
     /**
-     * 点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开H5地址"),(3, "应用客户端自定义")
+     * 点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开H5地址"),(3, "应用客户端自定义"),(4, "打开自定Intent URI");
      */
     private int clickType;
     /**
@@ -71,6 +71,11 @@ public class VarnishedMessage extends Message {
      * 应用客户端自定义内容 【clickType为应用客户端自定义时，必填 长度限制1000字节】
      */
     private String customAttribute = "";
+
+    /**
+     * 打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
+     */
+    private String customUri = "";
 
     /* =============点击动作 end=============  */
 
@@ -168,6 +173,7 @@ public class VarnishedMessage extends Message {
         this.parameters = builder.parameters;
         this.activity = builder.activity;
         this.customAttribute = builder.customAttribute;
+        this.customUri = builder.customUri;
         this.isOffLine = builder.isOffLine;
         this.validTime = builder.validTime;
         this.pushTimeType = builder.pushTimeType;
@@ -184,6 +190,10 @@ public class VarnishedMessage extends Message {
         this.fixEndDisplayDate = builder.fixEndDisplayDate;
         this.notifyKey = builder.notifyKey;
         this.extra = builder.extra;
+    }
+
+    public String getCustomUri() {
+        return customUri;
     }
 
     public static long getSerialVersionUID() {
@@ -311,6 +321,7 @@ public class VarnishedMessage extends Message {
                 ", parameters=" + parameters +
                 ", activity='" + activity + '\'' +
                 ", customAttribute='" + customAttribute + '\'' +
+                ", customUri='" + customUri + '\'' +
                 ", isOffLine=" + isOffLine +
                 ", validTime=" + validTime +
                 ", pushTimeType=" + pushTimeType +
@@ -366,7 +377,7 @@ public class VarnishedMessage extends Message {
 
     /* =============点击动作 begin=============  */
         /**
-         * 点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开H5地址"),(3, "应用客户端自定义")
+         * 点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开H5地址"),(3, "应用客户端自定义"),(4, "打开自定Intent URI");
          */
         private int clickType;
         /**
@@ -385,6 +396,10 @@ public class VarnishedMessage extends Message {
          * 应用客户端自定义内容 【clickType为应用客户端自定义时，必填 长度限制1000字节】
          */
         private String customAttribute = "";
+        /**
+         * 打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
+         */
+        private String customUri = "";
 
     /* =============点击动作 end=============  */
 
@@ -522,6 +537,11 @@ public class VarnishedMessage extends Message {
 
         public VarnishedMessage.Builder customAttribute(String customAttribute) {
             this.customAttribute = customAttribute;
+            return this;
+        }
+
+        public VarnishedMessage.Builder customUri(String customUri) {
+            this.customUri = customUri;
             return this;
         }
 

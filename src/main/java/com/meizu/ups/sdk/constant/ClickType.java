@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ClickType {
-    APP(0, "打开应用"), ACTIVITY(1, "打开应用页面"), H5(2, "打开URI页面"), CUSTOM_ATTRIBUTE(3, "应用客户端自定义");
+    APP(0, "打开应用"),
+    ACTIVITY(1, "打开应用页面"),
+    URI(2, "打开URI页面"),
+    CUSTOM_ATTRIBUTE(3, "应用客户端自定义"),
+    CUSTOM_URI(4, "打开自定Intent URI");
 
     private Integer desc;
     private String value;

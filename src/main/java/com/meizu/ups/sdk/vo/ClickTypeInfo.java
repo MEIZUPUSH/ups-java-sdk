@@ -38,15 +38,22 @@ public class ClickTypeInfo implements Serializable {
      */
     private String customAttribute = "";
 
+    /**
+     * 打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
+     */
+    private String customUri = "";
+
+
     public ClickTypeInfo() {
     }
 
-    public ClickTypeInfo(int clickType, String url, JSONObject parameters, String activity, String customAttribute) {
+    public ClickTypeInfo(int clickType, String url, JSONObject parameters, String activity, String customAttribute,String customUri) {
         this.clickType = clickType;
         this.url = url;
         this.parameters = parameters;
         this.activity = activity;
         this.customAttribute = customAttribute;
+        this.customUri = customUri;
     }
 
     public String getActivity() {
@@ -89,6 +96,14 @@ public class ClickTypeInfo implements Serializable {
         this.customAttribute = customAttribute;
     }
 
+    public void setCustomUri(String customUri) {
+        this.customUri = customUri;
+    }
+
+    public String getCustomUri() {
+        return customUri;
+    }
+
     @Override
     public String toString() {
         return "ClickTypeInfo{" +
@@ -97,6 +112,7 @@ public class ClickTypeInfo implements Serializable {
                 ", parameters=" + parameters +
                 ", activity='" + activity + '\'' +
                 ", customAttribute='" + customAttribute + '\'' +
+                ", customUri='" + customUri + '\'' +
                 '}';
     }
 }

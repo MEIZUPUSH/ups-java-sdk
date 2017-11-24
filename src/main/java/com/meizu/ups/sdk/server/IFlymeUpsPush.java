@@ -273,7 +273,9 @@ public class IFlymeUpsPush extends HttpClient {
 
             NoticeBarInfo noticeBarInfo = new NoticeBarInfo(msgInfo.getNoticeBarType(), msgInfo.getTitle(), msgInfo.getContent());
             NoticeExpandInfo noticeExpandInfo = new NoticeExpandInfo(msgInfo.getNoticeExpandType(), msgInfo.getNoticeExpandContent());
-            ClickTypeInfo clickTypeInfo = new ClickTypeInfo(msgInfo.getClickType(), msgInfo.getUrl(), msgInfo.getParameters(), msgInfo.getActivity(), msgInfo.getCustomAttribute());
+            ClickTypeInfo clickTypeInfo = new ClickTypeInfo(msgInfo.getClickType(), msgInfo.getUrl(),
+                    msgInfo.getParameters(), msgInfo.getActivity(),
+                    msgInfo.getCustomAttribute(),msgInfo.getCustomUri());
             PushTimeInfo pushTimeInfo = new PushTimeInfo(msgInfo.isOffLine(), msgInfo.getValidTime());
             NotificationType notificationType = new NotificationType(msgInfo.isVibrate(), msgInfo.isLights(), msgInfo.isSound());
             AdvanceInfo advanceInfo = new AdvanceInfo(msgInfo.isFixSpeed(), msgInfo.getFixSpeedRate(), msgInfo.isSuspend(),
