@@ -3,14 +3,12 @@ package com.meizu.ups.sdk.server;
 
 import com.alibaba.fastjson.JSONObject;
 import com.meizu.ups.sdk.constant.ClickType;
-import com.meizu.ups.sdk.server.constant.PushResponseCode;
 import com.meizu.ups.sdk.server.constant.ResultPack;
 import com.meizu.ups.sdk.server.model.push.PushResult;
 import com.meizu.ups.sdk.server.model.push.UnVarnishedMessage;
 import com.meizu.ups.sdk.server.model.push.VarnishedMessage;
 import com.meizu.ups.sdk.server.model.statistics.DailyPushStatics;
 import com.meizu.ups.sdk.utils.DateUtils;
-import com.meizu.ups.sdk.vo.ClickTypeInfo;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -44,9 +42,9 @@ public class IFlymeUpsPushTest {
         //推送对象
         IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
         JSONObject param = new JSONObject();
-        param.put("key","v1");
-        param.put("k2","v2");
-        param.put("k3","v3");
+        param.put("key", "v1");
+        param.put("k2", "v2");
+        param.put("k3", "v3");
 
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
@@ -172,16 +170,9 @@ public class IFlymeUpsPushTest {
             PushResult pushResult = result.value();
             String msgId = pushResult.getMsgId();//推送消息ID，用于推送流程明细排查
             Map<String, List<String>> targetResultMap = pushResult.getRespTarget();//推送结果，全部推送成功，则map为empty
-            System.out.println("push msgId:" + msgId);
-            System.out.println("push targetResultMap:" + targetResultMap);
+            System.out.println("push result:" + pushResult);
             if (targetResultMap != null && !targetResultMap.isEmpty()) {
-                // 3 判断是否有获取超速的target
-                if (targetResultMap.containsKey(PushResponseCode.RSP_SPEED_LIMIT.getValue())) {
-                    // 4 获取超速的target
-                    List<String> rateLimitTarget = targetResultMap.get(PushResponseCode.RSP_SPEED_LIMIT.getValue());
-                    System.out.println("rateLimitTarget is :" + rateLimitTarget);
-                    //TODO 5 业务处理，重推......
-                }
+                System.err.println("push fail token:" + targetResultMap);
             }
         } else {
             // 调用推送接口服务异常 eg: appId、appKey非法、推送消息非法.....

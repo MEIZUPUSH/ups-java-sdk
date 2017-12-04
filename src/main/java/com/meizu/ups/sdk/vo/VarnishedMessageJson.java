@@ -18,10 +18,6 @@ public class VarnishedMessageJson implements Serializable {
      */
     private NoticeBarInfo noticeBarInfo = new NoticeBarInfo();
     /**
-     * 展开方式
-     */
-    private NoticeExpandInfo noticeExpandInfo = new NoticeExpandInfo();
-    /**
      * 点击动作
      */
     private ClickTypeInfo clickTypeInfo = new ClickTypeInfo();
@@ -33,33 +29,17 @@ public class VarnishedMessageJson implements Serializable {
      * 高级设置
      */
     private AdvanceInfo advanceInfo = new AdvanceInfo();
-    /**
-     * 扩展参数 参考枚举 ExtraParam
-     */
-    private Map<String, String> extra = new LinkedHashMap<String, String>();
 
     public VarnishedMessageJson() {
     }
 
-    public VarnishedMessageJson(NoticeBarInfo noticeBarInfo, NoticeExpandInfo noticeExpandInfo,
+    public VarnishedMessageJson(NoticeBarInfo noticeBarInfo,
                                 ClickTypeInfo clickTypeInfo, PushTimeInfo pushTimeInfo,
                                 AdvanceInfo advanceInfo) {
         this.noticeBarInfo = noticeBarInfo;
-        this.noticeExpandInfo = noticeExpandInfo;
         this.clickTypeInfo = clickTypeInfo;
         this.pushTimeInfo = pushTimeInfo;
         this.advanceInfo = advanceInfo;
-    }
-
-    public VarnishedMessageJson(NoticeBarInfo noticeBarInfo, NoticeExpandInfo noticeExpandInfo,
-                                ClickTypeInfo clickTypeInfo, PushTimeInfo pushTimeInfo,
-                                AdvanceInfo advanceInfo, Map<String, String> extra) {
-        this.noticeBarInfo = noticeBarInfo;
-        this.noticeExpandInfo = noticeExpandInfo;
-        this.clickTypeInfo = clickTypeInfo;
-        this.pushTimeInfo = pushTimeInfo;
-        this.advanceInfo = advanceInfo;
-        this.extra = extra;
     }
 
     public NoticeBarInfo getNoticeBarInfo() {
@@ -68,14 +48,6 @@ public class VarnishedMessageJson implements Serializable {
 
     public void setNoticeBarInfo(NoticeBarInfo noticeBarInfo) {
         this.noticeBarInfo = noticeBarInfo;
-    }
-
-    public NoticeExpandInfo getNoticeExpandInfo() {
-        return noticeExpandInfo;
-    }
-
-    public void setNoticeExpandInfo(NoticeExpandInfo noticeExpandInfo) {
-        this.noticeExpandInfo = noticeExpandInfo;
     }
 
     public ClickTypeInfo getClickTypeInfo() {
@@ -102,11 +74,4 @@ public class VarnishedMessageJson implements Serializable {
         this.advanceInfo = advanceInfo;
     }
 
-    public Map<String, String> getExtra() {
-        return extra;
-    }
-
-    public void setExtra(Map<String, String> extra) {
-        this.extra = extra;
-    }
 }

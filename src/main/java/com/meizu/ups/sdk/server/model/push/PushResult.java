@@ -1,5 +1,6 @@
 package com.meizu.ups.sdk.server.model.push;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +12,21 @@ import java.util.Map;
  */
 public class PushResult {
 
-    private String msgId;//推送消息ID，用于推送流程明细排查
-    private Map<String, List<String>> respTarget;//推送目标结果状态
+    /**
+     * 推送消息ID，用于推送流程明细排查
+     */
+    private String msgId;
+    /**
+     * 推送目标结果状态
+     */
+    private Map<String, List<String>> respTarget;
+    /**
+     * CP日志
+     * key:cp
+     * value:log
+     */
+    private Map<String, String> logs = new HashMap<String, String>();
+
 
     public PushResult() {
     }
@@ -34,6 +48,14 @@ public class PushResult {
         this.msgId = msgId;
     }
 
+    public Map<String, String> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(Map<String, String> logs) {
+        this.logs = logs;
+    }
+
     public void setRespTarget(Map<String, List<String>> respTarget) {
         this.respTarget = respTarget;
     }
@@ -43,6 +65,7 @@ public class PushResult {
         return "PushResult{" +
                 "msgId='" + msgId + '\'' +
                 ", respTarget=" + respTarget +
+                ", logs=" + logs +
                 '}';
     }
 }

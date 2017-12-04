@@ -23,10 +23,6 @@ public class VarnishedMessage extends Message {
 
     /* =============通知栏样式 begin=============  */
     /**
-     * 通知栏类型(0, "默认") 【必填，值为0】
-     */
-    private int noticeBarType = 0;
-    /**
      * 推送标题, 【必填，字数限制1~32】
      */
     private String title = "";
@@ -35,18 +31,6 @@ public class VarnishedMessage extends Message {
      */
     private String content = "";
     /* =============通知栏样式 end=============  */
-
-
-    /* =============展开方式 begin=============  */
-    /**
-     * 展开方式 (0, "禁用"),(1, "文本")
-     */
-    private int noticeExpandType = 0;
-    /**
-     * 展开内容, 【noticeExpandType为文本时，必填】
-     */
-    private String noticeExpandContent = "";
-    /* =============展开方式 end=============  */
 
 
     /* =============点击动作 begin=============  */
@@ -150,24 +134,14 @@ public class VarnishedMessage extends Message {
     private String notifyKey = "";
     /* =============高级设置 end=============  */
 
-    /**
-     * Key	Value含义  （key 参照：ExtraParam）
-     * callback	String  (必填字段), 第三方接收回执的Http接口, 最大长度128字节
-     * callback.param	String(可选字段), 第三方自定义回执参数, 最大长度64字节
-     * callback.type	int(可选字段), 回执类型(1-送达回执, 2-点击回执, 3-送达与点击回执), 默认3 （ 参考:CallBackType）
-     */
-    public Map<String, String> extra = new LinkedHashMap();
 
     public VarnishedMessage() {
     }
 
     public VarnishedMessage(VarnishedMessage.Builder builder) {
         super.setAppId(builder.appId);
-        this.noticeBarType = builder.noticeBarType;
         this.title = builder.title;
         this.content = builder.content;
-        this.noticeExpandType = builder.noticeExpandType;
-        this.noticeExpandContent = builder.noticeExpandContent;
         this.clickType = builder.clickType;
         this.url = builder.url;
         this.parameters = builder.parameters;
@@ -188,8 +162,6 @@ public class VarnishedMessage extends Message {
         this.isFixDisplay = builder.isFixDisplay;
         this.fixStartDisplayDate = builder.fixStartDisplayDate;
         this.fixEndDisplayDate = builder.fixEndDisplayDate;
-        this.notifyKey = builder.notifyKey;
-        this.extra = builder.extra;
     }
 
     public String getCustomUri() {
@@ -208,9 +180,6 @@ public class VarnishedMessage extends Message {
         return startTime;
     }
 
-    public int getNoticeBarType() {
-        return noticeBarType;
-    }
 
     public String getTitle() {
         return title;
@@ -218,14 +187,6 @@ public class VarnishedMessage extends Message {
 
     public String getContent() {
         return content;
-    }
-
-    public int getNoticeExpandType() {
-        return noticeExpandType;
-    }
-
-    public String getNoticeExpandContent() {
-        return noticeExpandContent;
     }
 
     public int getClickType() {
@@ -296,10 +257,6 @@ public class VarnishedMessage extends Message {
         return fixEndDisplayDate;
     }
 
-    public Map<String, String> getExtra() {
-        return extra;
-    }
-
     public String getNotifyKey() {
 		return notifyKey;
 	}
@@ -311,11 +268,8 @@ public class VarnishedMessage extends Message {
     @Override
     public String toString() {
         return "VarnishedMessage{" +
-                "noticeBarType=" + noticeBarType +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", noticeExpandType=" + noticeExpandType +
-                ", noticeExpandContent='" + noticeExpandContent + '\'' +
                 ", clickType=" + clickType +
                 ", url='" + url + '\'' +
                 ", parameters=" + parameters +
@@ -337,7 +291,6 @@ public class VarnishedMessage extends Message {
                 ", lights=" + lights +
                 ", sound=" + sound +
                 ", notifyKey=" + notifyKey +
-                ", extra=" + extra +
                 '}';
     }
 
@@ -349,10 +302,6 @@ public class VarnishedMessage extends Message {
 
     /* =============通知栏样式 begin=============  */
         /**
-         * 通知栏类型(0, "默认"),(1, "图片") , 【必填，值为0或者1】
-         */
-        private int noticeBarType = 0;
-        /**
          * 推送标题, 【必填，字数限制1~32】
          */
         private String title = "";
@@ -361,18 +310,6 @@ public class VarnishedMessage extends Message {
          */
         private String content = "";
     /* =============通知栏样式 end=============  */
-
-
-    /* =============展开方式 begin=============  */
-        /**
-         * 展开方式 (0, "禁用"),(1, "文本")
-         */
-        private int noticeExpandType = 0;
-        /**
-         * 展开内容, 【noticeExpandType为文本时，必填】
-         */
-        private String noticeExpandContent = "";
-    /* =============展开方式 end=============  */
 
 
     /* =============点击动作 begin=============  */
@@ -466,11 +403,6 @@ public class VarnishedMessage extends Message {
          * 通知方式 声音 false关闭 true 开启 , 【非必填，默认true】
          */
         private boolean sound = Boolean.TRUE;
-        /**
-         * 分组合并推送的key，凡是带有此key的通知栏消息只会显示最后到达的一条
-         * 字段规则合法的消息组ID由数字([0-9]), 大小写字母([a-zA-Z]), 下划线(_)和中划线(-)组成, 长度不大于8个字符
-         */
-        private String notifyKey = "";
     /* =============高级设置 end=============  */
         /**
          * Key	Value含义  （key 参照：ExtraParam）
@@ -488,11 +420,6 @@ public class VarnishedMessage extends Message {
             return this;
         }
 
-        public VarnishedMessage.Builder noticeBarType(int noticeBarType) {
-            this.noticeBarType = noticeBarType;
-            return this;
-        }
-
         public VarnishedMessage.Builder title(String title) {
             this.title = title;
             return this;
@@ -502,18 +429,6 @@ public class VarnishedMessage extends Message {
             this.content = content;
             return this;
         }
-
-
-        public VarnishedMessage.Builder noticeExpandType(int noticeExpandType) {
-            this.noticeExpandType = noticeExpandType;
-            return this;
-        }
-
-        public VarnishedMessage.Builder noticeExpandContent(String noticeExpandContent) {
-            this.noticeExpandContent = noticeExpandContent;
-            return this;
-        }
-
 
         public VarnishedMessage.Builder clickType(int clickType) {
             this.clickType = clickType;
@@ -616,13 +531,6 @@ public class VarnishedMessage extends Message {
             this.extra.put(key, value);
             return this;
         }
-
-        public VarnishedMessage.Builder notifyKey(String notifyKey) {
-        	this.notifyKey = notifyKey;
-        	return this;
-        }
-
-
         public VarnishedMessage build() {
             return new VarnishedMessage(this);
         }

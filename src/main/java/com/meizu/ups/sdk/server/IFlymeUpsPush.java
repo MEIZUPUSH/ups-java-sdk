@@ -19,7 +19,6 @@ import com.meizu.ups.sdk.utils.StringUtils;
 import com.meizu.ups.sdk.vo.AdvanceInfo;
 import com.meizu.ups.sdk.vo.ClickTypeInfo;
 import com.meizu.ups.sdk.vo.NoticeBarInfo;
-import com.meizu.ups.sdk.vo.NoticeExpandInfo;
 import com.meizu.ups.sdk.vo.NotificationType;
 import com.meizu.ups.sdk.vo.PushTimeInfo;
 import com.meizu.ups.sdk.vo.UnVarnishedMessageJson;
@@ -271,11 +270,10 @@ public class IFlymeUpsPush extends HttpClient {
         } else if (PushType.STATUSBAR == pushType) {
             VarnishedMessage msgInfo = (VarnishedMessage) message;
 
-            NoticeBarInfo noticeBarInfo = new NoticeBarInfo(msgInfo.getNoticeBarType(), msgInfo.getTitle(), msgInfo.getContent());
-            NoticeExpandInfo noticeExpandInfo = new NoticeExpandInfo(msgInfo.getNoticeExpandType(), msgInfo.getNoticeExpandContent());
+            NoticeBarInfo noticeBarInfo = new NoticeBarInfo(msgInfo.getTitle(), msgInfo.getContent());
             ClickTypeInfo clickTypeInfo = new ClickTypeInfo(msgInfo.getClickType(), msgInfo.getUrl(),
                     msgInfo.getParameters(), msgInfo.getActivity(),
-                    msgInfo.getCustomAttribute(),msgInfo.getCustomUri());
+                    msgInfo.getCustomAttribute(), msgInfo.getCustomUri());
             PushTimeInfo pushTimeInfo = new PushTimeInfo(msgInfo.isOffLine(), msgInfo.getValidTime());
             NotificationType notificationType = new NotificationType(msgInfo.isVibrate(), msgInfo.isLights(), msgInfo.isSound());
             AdvanceInfo advanceInfo = new AdvanceInfo(msgInfo.isFixSpeed(), msgInfo.getFixSpeedRate(), msgInfo.isSuspend(),
@@ -283,7 +281,7 @@ public class IFlymeUpsPush extends HttpClient {
                     msgInfo.getFixEndDisplayDate(), msgInfo.getNotifyKey());
 
             VarnishedMessageJson messageJson = new VarnishedMessageJson(noticeBarInfo,
-                    noticeExpandInfo, clickTypeInfo, pushTimeInfo, advanceInfo, msgInfo.getExtra());
+                    clickTypeInfo, pushTimeInfo, advanceInfo);
             addParameter(body, "messageJson", JSON.toJSONString(messageJson));
 
             if (UserType.PUSHID == userType) {
