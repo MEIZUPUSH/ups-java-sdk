@@ -25,7 +25,7 @@ public class IFlymeUpsPushTest {
     /**
      * 平台注册应用secretKey
      */
-    public static final String APP_SECRET_KEY = "1f69320448674ad6b17b49b612dcb898";
+    public static final String APP_SECRET_KEY = "0c199e04a7af4854a8a3b142db9875aa";
     /**
      * 平台注册应用ID
      */
