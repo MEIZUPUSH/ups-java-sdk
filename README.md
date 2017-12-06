@@ -1,4 +1,4 @@
-# UPS系统JAVA版本SDK
+# 集成推送平台JAVA版本SDK
 
 ## JavaPushSdk发布说明(请使用最新版本)
 * 中央仓库获取 [MVN Repository]() 或者 [Central Repository]() 
@@ -6,7 +6,7 @@
 
 ## 更新日志
 
-### [2017-12-15]V1.0.0.20161218_release
+### [2017-12-06]V1.0.0.20171206_release
 *  1.0.0标准版
 
 # 类型定义 
@@ -36,7 +36,7 @@ content|String|是|null|推送内容, 【字数限制1~100】
 clickType|int|否|0|点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开URI页面"),(3, "应用客户端自定义"),(4, "打开自定Intent URI");【非必填，默认值为0】
 url|String|否|null|URI页面地址, 【clickType为打开URI页面时，必填, 长度限制1000byte】
 parameters|JSONObject|否|null|透传参数 【JSON格式，非必填】
-activity|String|否|null|应用页面地址, 【clickType为打开应用页面时，格式 pkg.activity eg: com.meizu.upspushdemo.TestActivity 必填, 长度限制1000byte】
+activity|String|否|null|应用页面地址, 【clickType为打开应用页面时，格式 pkg.activity eg: com.meizu.upspushdemo.TestActivity 必填】
 customAttribute|String|否|null|应用客户端自定义内容, 【clickType为应用客户端自定义时，必填, 长度限制1000byte】
 customUri|String|否|null|打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
 isOffLine|Boolean|否|true|是否进离线消息, (false 否 true 是) 【非必填，默认值为true】

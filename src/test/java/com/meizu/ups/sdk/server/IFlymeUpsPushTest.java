@@ -140,6 +140,7 @@ public class IFlymeUpsPushTest {
 
         //目标用户
         List<String> alias = new ArrayList<String>();
+        alias.add("ups");
         alias.add("alias");
         alias.add("alias2");
 

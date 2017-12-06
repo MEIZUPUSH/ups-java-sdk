@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.meizu.flyme</groupId>
     <artifactId>ups-java-sdk</artifactId>
-    <version>1.0.0.20171121</version>
+    <version>1.0.0.20171206</version>
 
     <packaging>jar</packaging>
     <name>MeizuUpsPushSDK</name>
     <description>Meizu UPS Push is a lightweight meizu push sdk.</description>
 
-    <url>https://github.com/JasperXgwang/ups-java-sdk</url>
+    <url>https://github.com/MEIZUPUSH/ups-java-sdk</url>
     <inceptionYear>2017</inceptionYear>
 
     <properties>
@@ -27,13 +27,13 @@
     </developers>
 
     <scm>
-        <url>https://github.com/JasperXgwang/ups-java-sdk</url>
-        <connection>scm:git:https://github.com/JasperXgwang/ups-java-sdk</connection>
+        <url>https://github.com/MEIZUPUSH/ups-java-sdk</url>
+        <connection>scm:git:https://github.com/MEIZUPUSH/ups-java-sdk</connection>
     </scm>
 
     <organization>
         <name>MEIZUPUSH Group</name>
-        <url>https://github.com/JasperXgwang</url>
+        <url>https://github.com/MEIZUPUSH</url>
     </organization>
 
     <licenses>
