@@ -1,12 +1,12 @@
 # 集成推送平台JAVA版本SDK
 
 ## JavaPushSdk发布说明(请使用最新版本)
-* 中央仓库获取 [MVN Repository]() 或者 [Central Repository]() 
-* 直接下载获取 [Java Server SDK]()
+* 中央仓库获取 [MVN Repository](http://mvnrepository.com/artifact/com.meizu.flyme/ups-java-sdk)
+* 直接下载获取 [Java Server SDK](https://github.com/MEIZUPUSH/ups-java-sdk/releases)
 
 ## 更新日志
 
-### [2017-12-06]V1.0.0.20171206_release
+### [2017-12-06]V1.0.0.20171206
 *  1.0.0标准版
 
 # 类型定义 
