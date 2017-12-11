@@ -17,16 +17,6 @@ public class DailyPushStatics {
     private Date date;
 
     /**
-     * 目标数
-     */
-    private Long targetNo;
-
-    /**
-     * 有效数
-     */
-    private Long validNo;
-
-    /**
      * 推送数
      */
     private Long pushedNo;
@@ -37,31 +27,10 @@ public class DailyPushStatics {
     private Long acceptNo;
 
     /**
-     * 展示数
-     */
-    private Long displayNo;
-
-    /**
      * 点击数
      */
     private Long clickNo;
 
-
-    public Long getTargetNo() {
-        return targetNo;
-    }
-
-    public void setTargetNo(Long targetNo) {
-        this.targetNo = targetNo;
-    }
-
-    public Long getValidNo() {
-        return validNo;
-    }
-
-    public void setValidNo(Long validNo) {
-        this.validNo = validNo;
-    }
 
     public Long getPushedNo() {
         return pushedNo;
@@ -77,14 +46,6 @@ public class DailyPushStatics {
 
     public void setAcceptNo(Long acceptNo) {
         this.acceptNo = acceptNo;
-    }
-
-    public Long getDisplayNo() {
-        return displayNo;
-    }
-
-    public void setDisplayNo(Long displayNo) {
-        this.displayNo = displayNo;
     }
 
     public Long getClickNo() {
@@ -105,13 +66,10 @@ public class DailyPushStatics {
 
     @Override
     public String toString() {
-        return "TaskStatisticsDaily{" +
+        return "DailyPushStatics{" +
                 "date=" + date +
-                ", targetNo=" + targetNo +
-                ", validNo=" + validNo +
                 ", pushedNo=" + pushedNo +
                 ", acceptNo=" + acceptNo +
-                ", displayNo=" + displayNo +
                 ", clickNo=" + clickNo +
                 '}';
     }
