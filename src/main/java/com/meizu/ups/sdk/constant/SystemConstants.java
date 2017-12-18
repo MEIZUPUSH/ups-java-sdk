@@ -7,7 +7,7 @@ public class SystemConstants {
 
     public static final String CHAR_SET = "UTF-8";
 
-    public static final String SDK_VERSION = "1.0.0.20171206";
+    public static final String SDK_VERSION = "1.0.1.20171218";
 
     private static final String PUSH_HOST_NAME = "server-api-mzups.meizu.com";
 

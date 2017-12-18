@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.meizu.flyme</groupId>
     <artifactId>ups-java-sdk</artifactId>
-    <version>1.0.0.20171206</version>
+    <version>1.0.1.20171218</version>
 
     <packaging>jar</packaging>
     <name>MeizuUpsPushSDK</name>

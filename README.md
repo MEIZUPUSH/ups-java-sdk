@@ -1,7 +1,7 @@
 # 集成推送平台JAVA版本SDK
 
 ## JavaPushSdk发布说明(请使用最新版本)
-* 中央仓库获取 [MVN Repository](http://mvnrepository.com/artifact/com.meizu.flyme/ups-java-sdk)
+* 中央仓库获取 [MVN Repository](http://mvnrepository.com/artifact/com.meizu.flyme/ups-java-sdk)或者 [Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.meizu.flyme%22)
 * 直接下载获取 [Java Server SDK](https://github.com/MEIZUPUSH/ups-java-sdk/releases)
 
 ## 更新日志
@@ -133,11 +133,8 @@ HUAWEI|Enum|华为
 名称|类型|描述
 ---|---|--- 
 date|Date|日期
-targetNo|Long|目标数
-validNo|Long|有效数
 pushedNo|Long|推送数
-acceptNo|Long|接受数
-displayNo|Long|展示数
+acceptNo|Long|接收数
 clickNo|Long|点击数
 
 # 接口说明 
