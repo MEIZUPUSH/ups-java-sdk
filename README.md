@@ -43,7 +43,6 @@ isFixSpeed|Boolean|否|false|是否定速推送, 【非必填，默认值为Fals
 fixSpeedRate|Long|否|0|定速速率,【isFixSpeed为true时，必填】
 isSuspend|Boolean|否|true|是否通知栏悬浮窗显示 (true显示，false不显示) 【非必填，默认True】
 isClearNoticeBar|Boolean|否|true|是否可清除通知栏 (true可以，false不可以) ，【非必填，默认true】
-isFixDisplay|Boolean|否|false|是否定时展示 【非必填,默认false】
 vibrate|Boolean|否|true|震动 (false关闭  true 开启) , 【非必填，默认true】
 lights|Boolean|否|true|闪光 (false关闭  true 开启) , 【非必填，默认true】
 sound|Boolean|否|true|声音 (false关闭  true 开启) , 【非必填，默认true】
