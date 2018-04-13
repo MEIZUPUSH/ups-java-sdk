@@ -1,4 +1,4 @@
-# 集成推送平台JAVA版本SDK
+# 魅族集成推送服务端JAVA_SDK
 
 ## JavaPushSdk发布说明(请使用最新版本)
 * 中央仓库获取 [MVN Repository](http://mvnrepository.com/artifact/com.meizu.flyme/ups-java-sdk)或者 [Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.meizu.flyme%22)
