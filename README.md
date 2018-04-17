@@ -1,4 +1,4 @@
-# 集成推送平台JAVA版本SDK
+# 魅族集成推送服务端JAVA_SDK
 
 ## JavaPushSdk发布说明(请使用最新版本)
 * 中央仓库获取 [MVN Repository](http://mvnrepository.com/artifact/com.meizu.flyme/ups-java-sdk)或者 [Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.meizu.flyme%22)
@@ -33,11 +33,7 @@ UnVarnishedMessage|透传消息体
 appId|Long|是|null|注册应用appId
 title|String|是|null|推送标题, 【字数限制1~32】
 content|String|是|null|推送内容, 【字数限制1~100】
-clickType|int|否|0|点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开URI页面"),(3, "应用客户端自定义"),(4, "打开自定Intent URI");【非必填，默认值为0】
-url|String|否|null|URI页面地址, 【clickType为打开URI页面时，必填, 长度限制1000byte】
-parameters|JSONObject|否|null|透传参数 【JSON格式，非必填】
-activity|String|否|null|应用页面地址, 【clickType为打开应用页面时，格式 pkg.activity eg: com.meizu.upspushdemo.TestActivity 必填】
-customAttribute|String|否|null|应用客户端自定义内容, 【clickType为应用客户端自定义时，必填, 长度限制1000byte】
+clickType|int|否|null|点击动作 (4, "打开自定Intent URI");【必填】
 customUri|String|否|null|打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
 isOffLine|Boolean|否|true|是否进离线消息, (false 否 true 是) 【非必填，默认值为true】
 validTime|int|否|24|有效时长 (1~72小时内的正整数), 【isOffLine值为true时，必填，值的范围1~72】
@@ -47,8 +43,6 @@ isFixSpeed|Boolean|否|false|是否定速推送, 【非必填，默认值为Fals
 fixSpeedRate|Long|否|0|定速速率,【isFixSpeed为true时，必填】
 isSuspend|Boolean|否|true|是否通知栏悬浮窗显示 (true显示，false不显示) 【非必填，默认True】
 isClearNoticeBar|Boolean|否|true|是否可清除通知栏 (true可以，false不可以) ，【非必填，默认true】
-isFixDisplay|Boolean|否|false|是否定时展示 【非必填,默认false】
-fixDisplayTime|(Date,Date)|否|(null,null)|定时展示开始,结束时间 【fixDisplay为true时，必填，并且开始时间要晚于结束时间】
 vibrate|Boolean|否|true|震动 (false关闭  true 开启) , 【非必填，默认true】
 lights|Boolean|否|true|闪光 (false关闭  true 开启) , 【非必填，默认true】
 sound|Boolean|否|true|声音 (false关闭  true 开启) , 【非必填，默认true】
@@ -194,11 +188,7 @@ respTarget;  推送目标结果状态(key：推送响应码  value：响应码�
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
                 .clickType(ClickType.CUSTOM_URI.getDesc())
-//                .activity("com.meizu.upspushdemo.TestActivity")
                 .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
-//                .parameters(param)
-//                .url("https://www.baidu.com/")
-//                .customAttribute("客户端自定义参数")
                 .build();
 
         //目标用户
@@ -269,8 +259,6 @@ respTarget;  推送目标结果状态(key：推送响应码  value：响应码�
                 .appId(appId)
                 .title("Java SDK 透传推送标题")
                 .content("Java Sdk透传推送内容")
-                .isOffLine(true)
-                .validTime(10)
                 .build();
 
         //目标用户
