@@ -466,7 +466,7 @@ List<DailyPushStatics>
      @Test
      public void testDailyPushStatics() throws IOException {
          //推送对象
-         IFlymePush push = new IFlymePush(APP_SECRET_KEY);
+         IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
          Date startTime = DateUtils.str2Date("2017-06-03", "yyyy-MM-dd");
          Date endTime = DateUtils.str2Date("2017-06-10", "yyyy-MM-dd");
          ResultPack<List<DailyPushStatics>> resultPack = push.dailyPushStatics(appId, startTime, endTime);
