@@ -3,6 +3,7 @@ package com.meizu.ups.sdk.server;
 
 import com.alibaba.fastjson.JSONObject;
 import com.meizu.ups.sdk.constant.ClickType;
+import com.meizu.ups.sdk.constant.PushType;
 import com.meizu.ups.sdk.server.constant.ResultPack;
 import com.meizu.ups.sdk.server.model.push.PushResult;
 import com.meizu.ups.sdk.server.model.push.UnVarnishedMessage;
@@ -50,11 +51,7 @@ public class IFlymeUpsPushTest {
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
                 .clickType(ClickType.CUSTOM_URI.getDesc())
-//                .activity("com.meizu.upspushdemo.TestActivity")
                 .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
-//                .parameters(param)
-//                .url("https://www.baidu.com/")
-//                .customAttribute("客户端自定义参数")
                 .build();
 
         //目标用户
@@ -181,5 +178,30 @@ public class IFlymeUpsPushTest {
             // result.comment();//服务异常描述
             System.out.println(String.format("pushMessage error code:%s comment:%s", result.code(), result.comment()));
         }
+    }
+    
+    /**
+     * 应用全网推送
+     * @throws IOException 
+     */
+    @Test
+    public void testPushToApp() throws IOException {
+        //推送对象
+        IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
+        JSONObject param = new JSONObject();
+        param.put("key", "v1");
+        param.put("k2", "v2");
+        param.put("k3", "v3");
+
+        //组装消息
+        VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
+                .title("Java SDK 推送标题").content("消息内容")
+                .clickType(ClickType.CUSTOM_URI.getDesc())
+                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
+                .build();
+
+        // 1 调用推送服务
+        ResultPack<Long> result = push.pushToApp(PushType.STATUSBAR, message);
+        System.out.println(result);
     }
 }

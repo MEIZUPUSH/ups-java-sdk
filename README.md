@@ -8,6 +8,8 @@
 
 ### [2017-12-06]V1.0.0.20171206
 *  1.0.0标准版
+### [2018-04-18]V1.0.0.20180418
+*  增加应用全网推送
 
 # 类型定义 
 ## 推送服务(IFlymeUpsPush) 
@@ -433,6 +435,56 @@ public void testUnVarnishedMessagePushByALias() throws Exception {
 
 ```
 
+#### 应用全网推送（pushToApp） 
+- 接口说明
+
+接口|说明
+---|---
+`ResultPack<Long> pushToApp(PushType pushType, Message message)`|应用全网推送
+
+- 参数说明
+
+参数名称|类型|必需|默认|描述
+---|---|---|---|---
+message|UnVarnishedMessage|是|null|推送消息
+
+
+- 返回值
+
+```
+Long  任务ID
+```
+
+- 示例
+
+
+```java
+    /**
+     * 应用全网推送
+     * @throws IOException 
+     */
+    @Test
+    public void testPushToApp() throws IOException {
+        //推送对象
+        IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
+        JSONObject param = new JSONObject();
+        param.put("key", "v1");
+        param.put("k2", "v2");
+        param.put("k3", "v3");
+
+        //组装消息
+        VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
+                .title("Java SDK 推送标题").content("消息内容")
+                .clickType(ClickType.CUSTOM_URI.getDesc())
+                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
+                .build();
+
+        // 1 调用推送服务
+        ResultPack<Long> result = push.pushToApp(PushType.STATUSBAR, message);
+        System.out.println(result);
+    }
+
+```
 
 ### 获取应用推送统计(dailyPushStatics) <a name="dailyPushStatics_index"/>
 - 接口说明
@@ -466,7 +518,7 @@ List<DailyPushStatics>
      @Test
      public void testDailyPushStatics() throws IOException {
          //推送对象
-         IFlymePush push = new IFlymePush(APP_SECRET_KEY);
+         IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
          Date startTime = DateUtils.str2Date("2017-06-03", "yyyy-MM-dd");
          Date endTime = DateUtils.str2Date("2017-06-10", "yyyy-MM-dd");
          ResultPack<List<DailyPushStatics>> resultPack = push.dailyPushStatics(appId, startTime, endTime);

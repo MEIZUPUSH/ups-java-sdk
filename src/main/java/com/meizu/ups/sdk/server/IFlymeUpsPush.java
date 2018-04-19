@@ -309,6 +309,80 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed(code, msg);
         }
     }
+    
+    /**
+     * 应用全网推送
+     *
+     * @param pushType
+     * @param message
+     * @throws IOException
+     * @return
+     */
+    public ResultPack<Long> pushToApp(PushType pushType, Message message) throws IOException {
+        String _url = SystemConstants.PUSH_APPID_PUSH_TO_APP;
+        if (pushType == null) {
+            return ResultPack.failed("pushType is null");
+        }
+        if (!pushType.equals(PushType.STATUSBAR)) {
+			return ResultPack.failed("pushType is error");
+		}
+        if (message == null) {
+            return ResultPack.failed("message is null");
+        }
+        Long appId = message.getAppId();
+        if (appId == null) {
+            return ResultPack.failed("appId is null");
+        }
+
+        StringBuilder body = newBody("pushType", String.valueOf(pushType.getDesc()));
+        addParameter(body, "appId", String.valueOf(appId));
+
+        if (PushType.STATUSBAR == pushType) {
+            if (!(message instanceof VarnishedMessage)) {
+                return ResultPack.failed("message must be instanceof VarnishedMessage");
+            }
+            VarnishedMessage msgInfo = (VarnishedMessage) message;
+
+            NoticeBarInfo noticeBarInfo = new NoticeBarInfo(msgInfo.getTitle(), msgInfo.getContent());
+            ClickTypeInfo clickTypeInfo = new ClickTypeInfo(msgInfo.getClickType(), msgInfo.getUrl(),
+                    msgInfo.getParameters(), msgInfo.getActivity(),
+                    msgInfo.getCustomAttribute(), msgInfo.getCustomUri());
+            String startTime = "";
+            if (msgInfo.getStartTime() != null) {
+                startTime = DateUtils.date2String(msgInfo.getStartTime());
+            }
+            PushTimeInfo pushTimeInfo = new PushTimeInfo(msgInfo.isOffLine(), msgInfo.getValidTime(), msgInfo.getPushTimeType(), startTime);
+            NotificationType notificationType = new NotificationType(msgInfo.isVibrate(), msgInfo.isLights(), msgInfo.isSound());
+            AdvanceInfo advanceInfo = new AdvanceInfo(msgInfo.isFixSpeed(), msgInfo.getFixSpeedRate(), msgInfo.isSuspend(),
+                    msgInfo.isClearNoticeBar(), notificationType, msgInfo.isFixDisplay(), msgInfo.getFixStartDisplayDate(),
+                    msgInfo.getFixEndDisplayDate(), msgInfo.getNotifyKey());
+
+            VarnishedMessageJson messageJson = new VarnishedMessageJson(noticeBarInfo,
+                    clickTypeInfo, pushTimeInfo, advanceInfo);
+            addParameter(body, "messageJson", JSON.toJSONString(messageJson));
+        } else {
+        	return ResultPack.failed("pushType is invalid");
+        }
+
+        HttpResult httpResult = super.post(useSSL, _url, body.toString());
+        if (httpResult == null) {
+            return null;
+        }
+        String code = httpResult.getCode();
+        String msg = httpResult.getMessage();
+        String value = httpResult.getValue();
+        if (SUCCESS_CODE.equals(code)) {
+            JSONObject objValue = JSON.parseObject(value);
+            if (objValue.containsKey("taskId")) {
+                Long taskId = objValue.getLong("taskId");
+                return ResultPack.succeed(code, msg, taskId);
+            } else {
+                return ResultPack.failed("error return value");
+            }
+        } else {
+            return ResultPack.failed(code, msg);
+        }
+    }
 
 
     enum UserType {
