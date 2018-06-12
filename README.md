@@ -8,8 +8,12 @@
 
 ### [2017-12-06]V1.0.0.20171206
 *  1.0.0标准版
+
 ### [2018-04-18]V1.0.0.20180418
 *  增加应用全网推送
+
+### [2018-06-12]V1.0.0.20180612
+*  增加取消应用全网推送
 
 # 类型定义 
 ## 推送服务(IFlymeUpsPush) 
@@ -482,6 +486,47 @@ Long  任务ID
         // 1 调用推送服务
         ResultPack<Long> result = push.pushToApp(PushType.STATUSBAR, message);
         System.out.println(result);
+    }
+
+```
+
+#### 取消推送任务（cancelTaskPush)
+- 接口说明
+
+接口|说明
+---|---
+`ResultPack<Boolean> cancelTaskPush(PushType pushType, long appId, long taskId)`|只针对全部用户推送且推送状态为待推送或者推送中的任务取消
+
+- 参数说明
+
+参数名称|类型|必需|默认|描述
+---|---|---|---|---
+pushType|PushType|是|null|消息类型
+appId|Long|是|null|应用ID
+taskId|Long|是|null|任务ID
+
+- 返回值
+
+```
+Boolean  true:成功  false：失败
+```
+
+- 示例
+
+
+```java
+    /**
+     * 取消推送任务(cancelTaskPush) 只针对全网推送生效
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testCancelTaskPush() throws IOException {
+        //推送对象
+        IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
+        long taskId = 60;
+        ResultPack<Boolean> resultPack = push.cancelTaskPush(PushType.STATUSBAR, appId, taskId);
+        System.out.println(resultPack);
     }
 
 ```
