@@ -383,6 +383,37 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed(code, msg);
         }
     }
+    
+    /**
+     * 取消推送任务
+     *
+     * @param pushType
+     * @param appId
+     * @param taskId
+     * @return
+     */
+    public ResultPack<Boolean> cancelTaskPush(PushType pushType, long appId, long taskId) throws IOException {
+        if (pushType == null) {
+            return ResultPack.failed("pushType is null");
+        }
+        if (!pushType.equals(PushType.STATUSBAR)) {
+			return ResultPack.failed("pushType is invalid");
+		}
+        String _url = SystemConstants.CANCEL_PUSH_TO_APP;
+
+        StringBuilder body = newBody("pushType", String.valueOf(pushType.getDesc()));
+        addParameter(body, "appId", String.valueOf(String.valueOf(appId)));
+        addParameter(body, "taskId", String.valueOf(String.valueOf(taskId)));
+
+        HttpResult httpResult = super.post(useSSL, _url, body.toString());
+        String code = httpResult.getCode();
+        String msg = httpResult.getMessage();
+        if (SUCCESS_CODE.equals(code)) {
+            return ResultPack.succeed("推送任务取消成功");
+        } else {
+            return ResultPack.failed(code, msg);
+        }
+    }
 
 
     enum UserType {

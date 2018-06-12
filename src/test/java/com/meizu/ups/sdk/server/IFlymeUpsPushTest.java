@@ -204,4 +204,18 @@ public class IFlymeUpsPushTest {
         ResultPack<Long> result = push.pushToApp(PushType.STATUSBAR, message);
         System.out.println(result);
     }
+    
+    /**
+     * 取消推送任务(cancelTaskPush) 只针对全网推送生效
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testCancelTaskPush() throws IOException {
+        //推送对象
+    	IFlymeUpsPush push = new IFlymeUpsPush(APP_SECRET_KEY);
+        long taskId = 60;
+        ResultPack<Boolean> resultPack = push.cancelTaskPush(PushType.STATUSBAR, appId, taskId);
+        System.out.println(resultPack);
+    }
 }

@@ -7,7 +7,7 @@ public class SystemConstants {
 
     public static final String CHAR_SET = "UTF-8";
 
-    public static final String SDK_VERSION = "1.0.1.20180418";
+    public static final String SDK_VERSION = "1.0.1.20180612";
 
     private static final String PUSH_HOST_NAME = "server-api-mzups.meizu.com";
 
@@ -39,6 +39,11 @@ public class SystemConstants {
      * 全部用户推送
      */
     public static final String PUSH_APPID_PUSH_TO_APP = "http://" + PUSH_HOST_NAME + "/ups/api/server/push/pushTask/pushToApp";
+
+    /**
+     * 取消全量推送任务
+     */
+    public static final String CANCEL_PUSH_TO_APP = "http://" + PUSH_HOST_NAME + "/ups/api/server/push/pushTask/cancel";
 
 
 }
