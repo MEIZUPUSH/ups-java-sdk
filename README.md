@@ -39,8 +39,10 @@ UnVarnishedMessage|透传消息体
 appId|Long|是|null|注册应用appId
 title|String|是|null|推送标题, 【字数限制1~32】
 content|String|是|null|推送内容, 【字数限制1~100】
-clickType|int|否|null|点击动作 (4, "打开自定Intent URI");【必填】
-customUri|String|否|null|打开自定Intent URI 【clickType=4，必填, 长度限制1000字节 eg:upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content】
+clickType|int|否|0|点击动作 (0,"打开应用"),(1,"打开应用页面"),(2,"打开URI页面")【非必填，默认值为0】
+url|String|否|null|URI页面地址, 【clickType为打开URI页面时，必填, 长度限制1000byte】
+parameters|JSONObject|否|null|透传参数 【JSON格式，非必填】
+activity|String|否|null|应用页面地址, 【clickType为打开应用页面时，格式 pkg.activity eg: com.meizu.upspushdemo.TestActivity 必填】
 isOffLine|Boolean|否|true|是否进离线消息, (false 否 true 是) 【非必填，默认值为true】
 validTime|int|否|24|有效时长 (1~72小时内的正整数), 【isOffLine值为true时，必填，值的范围1~72】
 pushTimeType|int|否|0|定时推送 (0, "即时"),(1, "定时"), 【只对全部用户推送生效】
@@ -193,8 +195,6 @@ respTarget;  推送目标结果状态(key：推送响应码  value：响应码�
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
-                .clickType(ClickType.CUSTOM_URI.getDesc())
-                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
                 .build();
 
         //目标用户
@@ -479,8 +479,6 @@ Long  任务ID
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
-                .clickType(ClickType.CUSTOM_URI.getDesc())
-                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
                 .build();
 
         // 1 调用推送服务

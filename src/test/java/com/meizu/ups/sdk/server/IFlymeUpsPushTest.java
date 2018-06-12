@@ -50,8 +50,6 @@ public class IFlymeUpsPushTest {
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
-                .clickType(ClickType.CUSTOM_URI.getDesc())
-                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
                 .build();
 
         //目标用户
@@ -196,8 +194,6 @@ public class IFlymeUpsPushTest {
         //组装消息
         VarnishedMessage message = new VarnishedMessage.Builder().appId(appId)
                 .title("Java SDK 推送标题").content("消息内容")
-                .clickType(ClickType.CUSTOM_URI.getDesc())
-                .customUri("upspushscheme://com.meizu.upspush/notify_detail?title=ups title&content=ups content")
                 .build();
 
         // 1 调用推送服务
