@@ -23,12 +23,13 @@ import com.meizu.ups.sdk.vo.NotificationType;
 import com.meizu.ups.sdk.vo.PushTimeInfo;
 import com.meizu.ups.sdk.vo.UnVarnishedMessageJson;
 import com.meizu.ups.sdk.vo.VarnishedMessageJson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * @author wangxinguo <wangxinguo@meizu.com>
@@ -37,6 +38,8 @@ import java.util.logging.Level;
  * @date 2016-8-23 14:07
  */
 public class IFlymeUpsPush extends HttpClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(IFlymeUpsPush.class);
 
     private static final String SUCCESS_CODE = "200";
 
@@ -214,9 +217,7 @@ public class IFlymeUpsPush extends HttpClient {
         boolean tryAgain;
         do {
             ++attempt;
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine(String.format("attempt [%s] to pushMessage [%s] to %s [%s]", attempt, message, userType.getValue(), targets));
-            }
+            logger.warn(String.format("attempt [%s] to pushMessage [%s] to %s [%s]", attempt, message, userType.getValue(), targets));
             result = this.pushMessageNoRetry(userType, pushType, message, targets);
             tryAgain = result == null && attempt <= retries;
             backoff = getBackoffTime(backoff, tryAgain);
@@ -309,14 +310,14 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed(code, msg);
         }
     }
-    
+
     /**
      * 应用全网推送
      *
      * @param pushType
      * @param message
-     * @throws IOException
      * @return
+     * @throws IOException
      */
     public ResultPack<Long> pushToApp(PushType pushType, Message message) throws IOException {
         String _url = SystemConstants.PUSH_APPID_PUSH_TO_APP;
@@ -324,8 +325,8 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed("pushType is null");
         }
         if (!pushType.equals(PushType.STATUSBAR)) {
-			return ResultPack.failed("pushType is error");
-		}
+            return ResultPack.failed("pushType is error");
+        }
         if (message == null) {
             return ResultPack.failed("message is null");
         }
@@ -361,7 +362,7 @@ public class IFlymeUpsPush extends HttpClient {
                     clickTypeInfo, pushTimeInfo, advanceInfo);
             addParameter(body, "messageJson", JSON.toJSONString(messageJson));
         } else {
-        	return ResultPack.failed("pushType is invalid");
+            return ResultPack.failed("pushType is invalid");
         }
 
         HttpResult httpResult = super.post(useSSL, _url, body.toString());
@@ -383,7 +384,7 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed(code, msg);
         }
     }
-    
+
     /**
      * 取消推送任务
      *
@@ -397,8 +398,8 @@ public class IFlymeUpsPush extends HttpClient {
             return ResultPack.failed("pushType is null");
         }
         if (!pushType.equals(PushType.STATUSBAR)) {
-			return ResultPack.failed("pushType is invalid");
-		}
+            return ResultPack.failed("pushType is invalid");
+        }
         String _url = SystemConstants.CANCEL_PUSH_TO_APP;
 
         StringBuilder body = newBody("pushType", String.valueOf(pushType.getDesc()));
