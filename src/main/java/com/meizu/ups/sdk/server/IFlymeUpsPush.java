@@ -217,7 +217,7 @@ public class IFlymeUpsPush extends HttpClient {
         boolean tryAgain;
         do {
             ++attempt;
-            logger.warn(String.format("attempt [%s] to pushMessage [%s] to %s [%s]", attempt, message, userType.getValue(), targets));
+            logger.debug(String.format("attempt [%s] to pushMessage [%s] to %s [%s]", attempt, message, userType.getValue(), targets));
             result = this.pushMessageNoRetry(userType, pushType, message, targets);
             tryAgain = result == null && attempt <= retries;
             backoff = getBackoffTime(backoff, tryAgain);
